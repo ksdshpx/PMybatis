@@ -8,15 +8,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/mydb1" />
+				<property name="url"
+					value="jdbc:mysql://localhost:3306/mydb1" />
 				<property name="username" value="root" />
 				<property name="password" value="root123" />
 			</dataSource>
 		</environment>
 	</environments>
-	<!-- 引入SQL映射文件
+	<!-- 引入SQL映射文件 -->
 	<mappers>
-		<mapper resource="org/mybatis/example/BlogMapper.xml" />
+		<mapper resource="EmployeeMapper.xml" />
 	</mappers>
-	 -->
+
 </configuration>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 配置SQL映射 
+		namespace:名称空间。
+			1.随便写
+			2.Mapper接口开发，不能随便写，按照规定来写
+-->
+<mapper namespace="org.mybatis.suibian.EmployeeMapper">
+	<!-- 
+		<select>:定义一个查询语句
+			id:select的唯一标识
+			resultType:结果集的映射类型
+			#{id}:获取参数值
+	 -->
+	<select id="selectEmployee" resultType="cn.ksdshpx.mybatis.beans.Employee">
+		<!-- select * from tbl_employee where id = #{id} -->
+		select id,last_name as lastName,email,gender from tbl_employee where id = #{id}
+	</select>
+</mapper>
