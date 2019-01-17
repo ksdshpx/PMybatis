@@ -16,6 +16,17 @@ import cn.ksdshpx.mybatis.beans.Employee;
  */
 public class TestMybatis {
 
+	/**
+	 * MyBatis HelloWorld小结：
+	 * 	 两个重要的配置文件
+	 * 		mybatis-config.xml：全局配置文件，数据库连接信息，引入SQL映射文件
+	 * 		EmployeeMapper.xml：SQL映射文件，配置增删改查的SQL语句的映射
+	 * 
+	 *   两个重要的对象
+	 *   	SqlSessionFactory:SqlSession的工厂对象，主要用于获取SqlSession对象
+	 *      SqlSession:Java程序与数据库的会话对象，可以理解为是对Connection的封装
+	 * 
+	 */
 	@Test
 	public void testSqlSessionFactory() throws Exception {
 		String resource = "mybatis-config.xml";
