@@ -17,6 +17,18 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 映射下划线到驼峰命名 -->
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
+	
+	<!-- typeAliases:别名处理
+			<typeAlias>:给某个java类型去别名	
+			 	type:指定java的全类名
+			 	alias:指定别名，默认的别名就是类名
+			<package>:为指定的包以及子包下的类批量去别名
+				如果有别名冲突的情况，可以使用@Alias注解为冲突的类具体指定别名
+	-->
+	<typeAliases>
+		<typeAlias type="cn.ksdshpx.mybatis.beans.Employee" alias="Employee"/>
+		<!-- <package name="cn.ksdshpx.mybatis.beans"/> -->
+	</typeAliases>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
