@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import cn.ksdshpx.mybatis.beans.Employee;
+import cn.ksdshpx.mybatis.dao.EmployeeDao;
 
 /**
  * @author peng.x
@@ -41,6 +42,29 @@ public class TestMybatis {
 			 * parameter:执行SQL用到的参数
 			 */
 			Employee employee = sqlSession.selectOne("org.mybatis.suibian.EmployeeMapper.selectEmployee", 1);
+			System.out.println(employee);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void testHelloWorldByMapper() throws Exception {
+		String resource = "mybatis-config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			//mapper接口：其实就是dao接口
+			/*
+			 * 两个绑定：
+			 * 		1.Mapper接口与SQL映射文件的绑定===>映射文件的namespace值必须指定为Mapper接口的全类名
+			 * 		2.Mapper接口的方法与SQL映射文件的具体SQL语句的绑定===>SQL语句的id值必须指定为Mpper接口的方法名
+			 */
+			//获取MyBatis为Mapper接口生成的代理实现类对象
+			EmployeeDao dao = sqlSession.getMapper(EmployeeDao.class);
+			System.out.println(dao.getClass().getName());//com.sun.proxy.$Proxy4
+			Employee employee = dao.getEmployeeById(2);
 			System.out.println(employee);
 		} finally {
 			sqlSession.close();

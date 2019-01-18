@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			1.随便写
 			2.Mapper接口开发，不能随便写，按照规定来写
 -->
-<mapper namespace="org.mybatis.suibian.EmployeeMapper">
+<mapper namespace="cn.ksdshpx.mybatis.dao.EmployeeDao">
 	<!-- 
 		<select>:定义一个查询语句
 			id:select的唯一标识
@@ -15,6 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{id}:获取参数值
 	 -->
 	<select id="selectEmployee" resultType="cn.ksdshpx.mybatis.beans.Employee">
+		<!-- select * from tbl_employee where id = #{id} -->
+		select id,last_name as lastName,email,gender from tbl_employee where id = #{id}
+	</select>
+	
+	<!-- public Employee getEmployeeById(Integer id); -->
+	<select id="getEmployeeById" resultType="cn.ksdshpx.mybatis.beans.Employee">
 		<!-- select * from tbl_employee where id = #{id} -->
 		select id,last_name as lastName,email,gender from tbl_employee where id = #{id}
 	</select>
