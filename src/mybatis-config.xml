@@ -29,6 +29,19 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="cn.ksdshpx.mybatis.beans.Employee" alias="Employee"/>
 		<!-- <package name="cn.ksdshpx.mybatis.beans"/> -->
 	</typeAliases>
+	<!-- 
+		MyBatis支持配置多个环境，通过default来指定具体使用的环境
+			environment:具体的环境
+				transactionManager:事务管理，
+						JDBC:JdbcTransactionFactory
+						MANAGED:ManagedTransactionFactory
+						结论：事务管理将来交给Spring去做的。
+			dataSource:数据源
+				UNPOOLED:不使用连接池 UnpooledDataSourceFactory
+				POOLED:使用连接池 PooledDataSourceFactory
+				JNDI:JndiDataSourceFactory
+						结论：数据源将来也是交给Spring去做的
+	 -->
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
