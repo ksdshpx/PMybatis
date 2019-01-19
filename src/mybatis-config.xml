@@ -54,7 +54,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			</dataSource>
 		</environment>
 	</environments>
-	<!-- 引入SQL映射文件 -->
+	<!-- 引入SQL映射文件 
+		 <mapper>:引入一个SQL映射文件
+		    resource:引入类路径下的SQL映射文件
+		 	package:批量引入SQL映射文件（必须要求SQL映射文件与Mapper接口同名同位置）
+	-->
 	<mappers>
 		<mapper resource="EmployeeMapper.xml" />
 	</mappers>

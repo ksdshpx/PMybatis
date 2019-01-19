@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			1.随便写
 			2.Mapper接口开发，不能随便写，按照规定来写
 -->
-<mapper namespace="cn.ksdshpx.mybatis.dao.EmployeeDao">
+<mapper namespace="cn.ksdshpx.mybatis.dao.EmployeeMapper">
 	<!-- 
 		<select>:定义一个查询语句
 			id:select的唯一标识

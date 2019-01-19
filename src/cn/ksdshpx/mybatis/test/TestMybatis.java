@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import cn.ksdshpx.mybatis.beans.Employee;
-import cn.ksdshpx.mybatis.dao.EmployeeDao;
+import cn.ksdshpx.mybatis.dao.EmployeeMapper;
 
 /**
  * @author peng.x
@@ -67,7 +67,7 @@ public class TestMybatis {
 			 * 			EmployeeDao:EmployeeDaoJdbcImpl、EmployeeDao:EmployeeDaoHibernateImpl、MyBatis代理实现类
 			 */
 			//获取MyBatis为Mapper接口生成的代理实现类对象
-			EmployeeDao dao = sqlSession.getMapper(EmployeeDao.class);
+			EmployeeMapper dao = sqlSession.getMapper(EmployeeMapper.class);
 			System.out.println(dao.getClass().getName());//com.sun.proxy.$Proxy4
 			Employee employee = dao.getEmployeeById(2);
 			System.out.println(employee);
