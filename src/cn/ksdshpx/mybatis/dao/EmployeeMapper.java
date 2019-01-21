@@ -15,7 +15,10 @@ public interface EmployeeMapper {
 
 	// 修改一个Employee
 	public void updateEmployee(Employee employee);
-	
-	//删除一个Employee
+
+	// 删除一个Employee
 	public Integer deleteEmployeeById(Integer id);
+
+	// 根据id和lastName返回Employee对象
+	public Employee getEmployeeByIdAndlastName(Integer id, String lastName);
 }

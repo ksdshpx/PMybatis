@@ -43,4 +43,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteEmployeeById">
 		delete from tbl_employee where id=#{id}
 	</delete>
+	
+	<!-- public Employee getEmployeeByIdAndlastName(Integer id, String lastName); -->
+	<select id="getEmployeeByIdAndlastName" resultType="cn.ksdshpx.mybatis.beans.Employee">
+		<!-- select id,last_name as lastName,email,gender from tbl_employee where id = #{param1} and last_name = #{param2} -->
+		select id,last_name as lastName,email,gender from tbl_employee where id = #{0} and last_name = #{1}
+	</select>
 </mapper>

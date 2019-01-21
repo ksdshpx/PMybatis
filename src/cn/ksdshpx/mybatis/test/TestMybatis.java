@@ -108,4 +108,19 @@ public class TestMybatis {
 			sqlSession.close();
 		}
 	}
+	
+	@Test
+	public void testParameter() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			//获取Mapper接口的代理实现类对象
+			EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+			//查询
+			Employee employee = mapper.getEmployeeByIdAndlastName(1, "zhangSan");
+			System.out.println(employee);
+		}finally {
+			sqlSession.close();
+		}
+	}
 }
