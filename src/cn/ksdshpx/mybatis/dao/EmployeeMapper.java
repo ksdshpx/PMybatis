@@ -1,5 +1,7 @@
 package cn.ksdshpx.mybatis.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.ksdshpx.mybatis.beans.Employee;
 
 /**
@@ -20,5 +22,5 @@ public interface EmployeeMapper {
 	public Integer deleteEmployeeById(Integer id);
 
 	// 根据id和lastName返回Employee对象
-	public Employee getEmployeeByIdAndlastName(Integer id, String lastName);
+	public Employee getEmployeeByIdAndlastName(@Param("id") Integer id, @Param("lastName") String lastName);
 }
