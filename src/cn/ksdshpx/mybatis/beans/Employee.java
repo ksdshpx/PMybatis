@@ -10,6 +10,18 @@ public class Employee {
 	private String email;
 	private Integer gender;
 
+	public Employee() {
+		super();
+	}
+
+	public Employee(Integer id, String lastName, String email, Integer gender) {
+		super();
+		this.id = id;
+		this.lastName = lastName;
+		this.email = email;
+		this.gender = gender;
+	}
+
 	public Integer getId() {
 		return id;
 	}

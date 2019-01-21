@@ -24,4 +24,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from tbl_employee where id = #{id}
 		<!-- select id,last_name as lastName,email,gender from tbl_employee where id = #{id} -->
 	</select>
+	
+	<!-- public void addEmployee(Employee employee); 
+		parameterType:指定参数类型，可以省略不配置
+	-->
+	<insert id="addEmployee" parameterType="cn.ksdshpx.mybatis.beans.Employee">
+		insert into tbl_employee(last_name,email,gender) values(#{lastName},#{email},#{gender})
+	</insert>
+	
+	<!-- public void updateEmployee(Employee employee); -->
+	<update id="updateEmployee">
+		update tbl_employee set last_name=#{lastName},email=#{email},gender=#{gender} where id=#{id}
+	</update>
+	
+	<!-- public void deleteEmployeeById(Integer id); -->
+	<delete id="deleteEmployeeById">
+		delete from tbl_employee where id=#{id}
+	</delete>
 </mapper>

@@ -76,4 +76,35 @@ public class TestMybatis {
 		}
 	}
 
+	private SqlSessionFactory getSqlSessionFactory() throws Exception{
+		InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		return sqlSessionFactory;
+	}
+	
+	@Test
+	public void testCRUD() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			//获取Mapper接口的代理实现类对象
+			EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+			//查询
+			//Employee employee = mapper.getEmployeeById(1);
+			//System.out.println(employee);
+			//添加
+			//Employee employee = new Employee(null, "wangWu", "wangWu@163.com", 1);
+			//mapper.addEmployee(employee);
+			//更新
+			//Employee employee = new Employee(1, "zhangSan", "zhangSan123@163.com", 1);
+			//mapper.updateEmployee(employee);
+			//删除
+			Integer result = mapper.deleteEmployeeById(4);
+			System.out.println("影响的条数："+result);
+			//提交
+			sqlSession.commit();
+		}finally {
+			sqlSession.close();
+		}
+	}
 }
