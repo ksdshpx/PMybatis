@@ -93,8 +93,9 @@ public class TestMybatis {
 			//Employee employee = mapper.getEmployeeById(1);
 			//System.out.println(employee);
 			//添加
-			//Employee employee = new Employee(null, "wangWu", "wangWu@163.com", 1);
-			//mapper.addEmployee(employee);
+			Employee employee = new Employee(null, "wangWu", "wangWu@163.com", 1);
+			mapper.addEmployee(employee);
+			System.out.println("返回的主键值："+employee.getId());
 			//更新
 			//Employee employee = new Employee(1, "zhangSan", "zhangSan123@163.com", 1);
 			//mapper.updateEmployee(employee);
