@@ -50,4 +50,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- select id,last_name as lastName,email,gender from tbl_employee where id = #{0} and last_name = #{1} -->
 		select id,last_name as lastName,email,gender from tbl_employee where id = #{id} and last_name = #{lastName}
 	</select>
+	
+	<!-- public Employee getEmployeeByMap(Map<String,Object> map);-->
+	<select id="getEmployeeByMap" resultType="cn.ksdshpx.mybatis.beans.Employee">
+		select id,last_name as lastName,email,gender from tbl_employee where id = #{map_id} and last_name = #{map_lastName}
+	</select>
 </mapper>
