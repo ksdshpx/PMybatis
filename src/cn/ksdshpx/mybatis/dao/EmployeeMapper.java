@@ -1,5 +1,6 @@
 package cn.ksdshpx.mybatis.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
@@ -25,6 +26,9 @@ public interface EmployeeMapper {
 
 	// 根据id和lastName返回Employee对象
 	public Employee getEmployeeByIdAndlastName(@Param("id") Integer id, @Param("lastName") String lastName);
-	
-	public Employee getEmployeeByMap(Map<String,Object> map);
+
+	public Employee getEmployeeByMap(Map<String, Object> map);
+
+	// 查询多行数据返回一个对象的集合
+	public List<Employee> getEmps();
 }

@@ -1,8 +1,7 @@
 package cn.ksdshpx.mybatis.test;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -119,12 +118,27 @@ public class TestMybatis {
 			//获取Mapper接口的代理实现类对象
 			EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
 			//查询
-			//Employee employee = mapper.getEmployeeByIdAndlastName(1, "zhangSan");
-			Map<String,Object> map = new HashMap<>();
-			map.put("map_id", 2);
-			map.put("map_lastName", "liSi");
-			Employee employee = mapper.getEmployeeByMap(map);
+			Employee employee = mapper.getEmployeeByIdAndlastName(1, "zhangSan");
+//			Map<String,Object> map = new HashMap<>();
+//			map.put("map_id", 2);
+//			map.put("map_lastName", "liSi");
+//			Employee employee = mapper.getEmployeeByMap(map);
 			System.out.println(employee);
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void testSelect() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			//获取Mapper接口的代理实现类对象
+			EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+			//查询多行数据返回一个对象的集合
+			List<Employee> emps = mapper.getEmps();
+			System.out.println(emps);
 		}finally {
 			sqlSession.close();
 		}
