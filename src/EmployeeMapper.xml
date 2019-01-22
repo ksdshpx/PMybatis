@@ -60,4 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getEmps" resultType="cn.ksdshpx.mybatis.beans.Employee">
 		select id,last_name as lastName,email,gender from tbl_employee
 	</select>
+	
+	<!-- public Map<String, Object> getEmployeeByIdReturnMap(Integer id); -->
+	<select id="getEmployeeByIdReturnMap" resultType="java.util.Map">
+		select id,last_name as lastName,email,gender from tbl_employee where id = #{id}
+	</select>
 </mapper>

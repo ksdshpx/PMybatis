@@ -31,4 +31,7 @@ public interface EmployeeMapper {
 
 	// 查询多行数据返回一个对象的集合
 	public List<Employee> getEmps();
+
+	// 查询单条数据返回一个Map
+	public Map<String, Object> getEmployeeByIdReturnMap(Integer id);
 }

@@ -2,6 +2,7 @@ package cn.ksdshpx.mybatis.test;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -139,6 +140,10 @@ public class TestMybatis {
 			//查询多行数据返回一个对象的集合
 			List<Employee> emps = mapper.getEmps();
 			System.out.println(emps);
+			
+			// 查询单条数据返回一个Map
+			Map<String, Object> map = mapper.getEmployeeByIdReturnMap(5);
+			System.out.println(map);
 		}finally {
 			sqlSession.close();
 		}
