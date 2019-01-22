@@ -3,6 +3,7 @@ package cn.ksdshpx.mybatis.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
 import cn.ksdshpx.mybatis.beans.Employee;
@@ -34,4 +35,9 @@ public interface EmployeeMapper {
 
 	// 查询单条数据返回一个Map
 	public Map<String, Object> getEmployeeByIdReturnMap(Integer id);
+
+	// 查询多条数据返回一个Map
+	// 指定使用对象的哪个属性作为map的key
+	@MapKey("id")
+	public Map<Integer, Employee> getEmpsReturnMap();
 }

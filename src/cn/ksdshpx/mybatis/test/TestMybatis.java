@@ -144,6 +144,10 @@ public class TestMybatis {
 			// 查询单条数据返回一个Map
 			Map<String, Object> map = mapper.getEmployeeByIdReturnMap(5);
 			System.out.println(map);
+			
+			// 查询多条数据返回一个Map
+			Map<Integer,Employee> map2 = mapper.getEmpsReturnMap();
+			System.out.println(map2);
 		}finally {
 			sqlSession.close();
 		}
