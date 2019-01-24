@@ -34,17 +34,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE e.`d_id` = d.`id` AND e.`id` = #{id};
 	</select>
 	<!-- 
-	 	empno  ename   deptno  dname
-     	  3    wangWu    10       研发部  
+	 	    id  last_name  email             gender      id  dept_name  
+             1  zhangSan   zhangSan@163.com  1            1  研发部  
 	 -->
 	<resultMap type="cn.ksdshpx.mybatis.beans.Employee" id="MyEmpAndDept">
 		<id column="eid" property="id"/>
 		<result column="last_name" property="lastName"/>
 		<result column="email" property="email"/>
 		<result column="gender" property="gender"/>
-		<!-- 级联属性 -->
+		<!-- 级联属性 
 		<result column="did" property="dept.id"/>
 		<result column="dept_name" property="dept.deptName"/>
+		-->
+		<!-- 
+			association:完成联合属性的映射
+				property:指定联合属性
+				javaType:指定联合属性的类型
+		 -->
+		 <association property="dept" javaType="cn.ksdshpx.mybatis.beans.Department">
+		 	<id column="did" property="id"/>
+		 	<result column="dept_name" property="deptName"/>
+		 </association>
 	</resultMap>
 	
 </mapper>

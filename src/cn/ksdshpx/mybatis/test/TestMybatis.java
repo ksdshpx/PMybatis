@@ -176,7 +176,7 @@ public class TestMybatis {
 			//获取Mapper接口的代理实现类对象
 			EmployeeMapperResultMap mapper = sqlSession.getMapper(EmployeeMapperResultMap.class);
 			Employee employee = mapper.getEmpAndDept(1);
-			System.out.println(employee);
+			System.out.println(employee.getDept());
 		}finally {
 			sqlSession.close();
 		}
