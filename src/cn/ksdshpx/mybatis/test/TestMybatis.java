@@ -96,7 +96,7 @@ public class TestMybatis {
 			//Employee employee = mapper.getEmployeeById(1);
 			//System.out.println(employee);
 			//添加
-			Employee employee = new Employee(null, "wangWu", "wangWu@163.com", 1);
+			Employee employee = new Employee(null, "wangWu", "wangWu@163.com", 1,null);
 			mapper.addEmployee(employee);
 			System.out.println("返回的主键值："+employee.getId());
 			//更新
@@ -162,6 +162,20 @@ public class TestMybatis {
 			//获取Mapper接口的代理实现类对象
 			EmployeeMapperResultMap mapper = sqlSession.getMapper(EmployeeMapperResultMap.class);
 			Employee employee = mapper.getEmployeeById(5);
+			System.out.println(employee);
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void testResultMapCascade() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			//获取Mapper接口的代理实现类对象
+			EmployeeMapperResultMap mapper = sqlSession.getMapper(EmployeeMapperResultMap.class);
+			Employee employee = mapper.getEmpAndDept(1);
 			System.out.println(employee);
 		}finally {
 			sqlSession.close();

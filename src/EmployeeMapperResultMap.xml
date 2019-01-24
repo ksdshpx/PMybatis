@@ -25,4 +25,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="email" property="email"/>
 		<result column="gender" property="gender"/>
 	</resultMap>
+	
+	<!-- 需求：查询员工对象，并获取其所在的部门信息-->
+	<!-- public Employee getEmpAndDept(Integer id); -->
+	<select id="getEmpAndDept" resultMap="MyEmpAndDept">
+		SELECT e.`id` as eid,e.`last_name`,e.`email`,e.`gender`,d.`id` as did,d.`dept_name`
+		FROM tbl_employee e,tbl_dept d
+		WHERE e.`d_id` = d.`id` AND e.`id` = #{id};
+	</select>
+	<!-- 
+	 	empno  ename   deptno  dname
+     	  3    wangWu    10       研发部  
+	 -->
+	<resultMap type="cn.ksdshpx.mybatis.beans.Employee" id="MyEmpAndDept">
+		<id column="eid" property="id"/>
+		<result column="last_name" property="lastName"/>
+		<result column="email" property="email"/>
+		<result column="gender" property="gender"/>
+		<!-- 级联属性 -->
+		<result column="did" property="dept.id"/>
+		<result column="dept_name" property="dept.deptName"/>
+	</resultMap>
+	
 </mapper>
