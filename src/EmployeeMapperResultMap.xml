@@ -77,5 +77,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select="cn.ksdshpx.mybatis.dao.DepartmentMapperResultMap.getDeptById"
 			column="d_id">
 		</association>
+		
+		<!-- 分步查询之延迟加载 
+			在全局配置文件中加上
+			<setting name="lazyLoadingEnabled" value="true"/>
+			<setting name="aggressiveLazyLoading" value="false"/>
+		-->
 	</resultMap>
 </mapper>
