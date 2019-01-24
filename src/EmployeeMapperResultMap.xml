@@ -55,6 +55,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	<id column="did" property="id"/>
 		 	<result column="dept_name" property="deptName"/>
 		 </association>
+		 
 	</resultMap>
-	
+    <!-- 
+    association使用分步查询：
+   		 需求：查询员工对象，并获取其所在的部门信息
+    	 1. 先根据员工的id查询员工信息
+    	 2.使用外键did查询员工的部门信息
+    -->
+	<!-- public Employee getEmployeeByStep(); -->
+	<select id="getEmployeeByStep" resultMap="MyEmpAndDeptByStep">
+		select id,last_name,email,gender,d_id from tbl_employee where id = #{id}
+	</select>
+	<resultMap type="cn.ksdshpx.mybatis.beans.Employee" id="MyEmpAndDeptByStep">
+		<id column="id" property="id"/>
+		<result column="last_name" property="lastName"/>
+		<result column="email" property="email"/>
+		<result column="gender" property="gender"/>
+		<!-- 分步查询 -->
+		<association property="dept" 
+			select="cn.ksdshpx.mybatis.dao.DepartmentMapperResultMap.getDeptById"
+			column="d_id">
+		</association>
+	</resultMap>
 </mapper>

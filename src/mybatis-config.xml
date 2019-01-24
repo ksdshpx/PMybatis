@@ -62,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		<mapper resource="EmployeeMapper.xml" />
 		<mapper resource="EmployeeMapperResultMap.xml"/>
+		<mapper resource="DepartmentMapperResultMap.xml"/>
 	</mappers>
 
 </configuration>
