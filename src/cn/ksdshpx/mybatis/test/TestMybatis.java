@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import cn.ksdshpx.mybatis.beans.Employee;
 import cn.ksdshpx.mybatis.dao.EmployeeMapper;
+import cn.ksdshpx.mybatis.dao.EmployeeMapperResultMap;
 
 /**
  * @author peng.x
@@ -148,6 +149,20 @@ public class TestMybatis {
 			// 查询多条数据返回一个Map
 			Map<Integer,Employee> map2 = mapper.getEmpsReturnMap();
 			System.out.println(map2);
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void testResultMap() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			//获取Mapper接口的代理实现类对象
+			EmployeeMapperResultMap mapper = sqlSession.getMapper(EmployeeMapperResultMap.class);
+			Employee employee = mapper.getEmployeeById(5);
+			System.out.println(employee);
 		}finally {
 			sqlSession.close();
 		}

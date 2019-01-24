@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ksdshpx.mybatis.dao.EmployeeMapperResultMap">
+	<!-- public Employee getEmployeeById(Integer id); -->
+	<select id="getEmployeeById" resultMap="MyEmp">
+		select id,last_name,email,gender from tbl_employee where id = #{id}
+	</select>
+	<!-- 自定义映射
+		 type:最终结果集封装的类型
+		 <id>:完成主键列的映射
+		 	 column:指定结果集的列名
+		 	 property:指定对象的属性名
+		 <result>:完成普通列的映射
+	 -->
+	 
+	 <!-- 
+	 	    id  last_name   email              gender   
+             5   wangWu     wangWu@163.com       1  
+	  -->
+	<resultMap type="cn.ksdshpx.mybatis.beans.Employee" id="MyEmp">
+		<id column="id" property="id"/>
+		<result column="last_name" property="lastName"/>
+		<result column="email" property="email"/>
+		<result column="gender" property="gender"/>
+	</resultMap>
+</mapper>
