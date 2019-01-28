@@ -10,7 +10,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
+import cn.ksdshpx.mybatis.beans.Department;
 import cn.ksdshpx.mybatis.beans.Employee;
+import cn.ksdshpx.mybatis.dao.DepartmentMapperResultMap;
 import cn.ksdshpx.mybatis.dao.EmployeeMapper;
 import cn.ksdshpx.mybatis.dao.EmployeeMapperResultMap;
 
@@ -193,6 +195,21 @@ public class TestMybatis {
 			System.out.println(employee.getEmail());
 			System.out.println("---------------------------");
 			System.out.println(employee.getDept());
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void testResultMapCollection() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			//获取Mapper接口的代理实现类对象
+			DepartmentMapperResultMap mapper = sqlSession.getMapper(DepartmentMapperResultMap.class);
+			Department dept = mapper.getDeptAndEmps(1);
+			System.out.println(dept);
+			System.out.println(dept.getEmps());
 		}finally {
 			sqlSession.close();
 		}
