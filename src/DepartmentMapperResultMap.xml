@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	-->
 	<!-- public Department getDeptAndEmpsStep(Integer id); -->
 	<select id="getDeptAndEmpsStep" resultMap="myDeptAndEmpsStep">
-		SELECT d.`id` did,d.`dept_name`
+		<include refid="selectDeptSql"></include>
 		FROM tbl_dept d
 		WHERE d.`id` = #{id}
 	</select>
@@ -48,4 +48,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="dept_name" property="deptName"/>
 		<collection property="emps" select="cn.ksdshpx.mybatis.dao.EmployeeMapperResultMap.getEmpsById" column="did" fetchType="eager"></collection>
 	</resultMap>
+	<!-- 抽取可重用的SQL片段 -->
+	<sql id="selectDeptSql">
+		SELECT d.`id` did,d.`dept_name`
+	</sql>
 </mapper>
