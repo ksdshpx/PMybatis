@@ -40,4 +40,5 @@ public interface EmployeeMapper {
 	// 指定使用对象的哪个属性作为map的key
 	@MapKey("id")
 	public Map<Integer, Employee> getEmpsReturnMap();
+	
 }

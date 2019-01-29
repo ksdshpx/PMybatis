@@ -19,11 +19,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="cn.ksdshpx.mybatis.beans.Department" id="myDeptAndEmps">
 		<id column="id" property="id"/>
 		<result column="dept_name" property="deptName"/>
+		<!-- 
+			collection:完成集合类型的联合属性映射
+				property:指定联合属性
+				ofType:指定集合中的元素类型
+		 -->
 		<collection property="emps" ofType="cn.ksdshpx.mybatis.beans.Employee">
 			<id column="eid" property="id"/>
 			<result column="last_name" property="lastName"/>
 			<result column="email" property="email"/>
 			<result column="gender" property="gender"/>
 		</collection>
+	</resultMap>
+	
+	<!-- collection分步查询 
+		 需求：查询部门信息并且查询部门下所有员工的信息
+		 	  1.先根据部门的id查询部门的信息
+		 	  2.再根据部门的id作为员工的外键查询员工的信息
+	-->
+	<!-- public Department getDeptAndEmpsStep(Integer id); -->
+	<select id="getDeptAndEmpsStep" resultMap="myDeptAndEmpsStep">
+		SELECT d.`id` did,d.`dept_name`
+		FROM tbl_dept d
+		WHERE d.`id` = #{id}
+	</select>
+	<resultMap type="cn.ksdshpx.mybatis.beans.Department" id="myDeptAndEmpsStep">
+		<id column="id" property="id"/>
+		<result column="dept_name" property="deptName"/>
+		<collection property="emps" select="cn.ksdshpx.mybatis.dao.EmployeeMapperResultMap.getEmpsById" column="did"></collection>
 	</resultMap>
 </mapper>

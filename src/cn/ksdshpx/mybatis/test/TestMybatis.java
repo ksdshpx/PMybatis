@@ -214,4 +214,20 @@ public class TestMybatis {
 			sqlSession.close();
 		}
 	}
+	
+	@Test
+	public void testResultMapCollectionStep() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			//获取Mapper接口的代理实现类对象
+			DepartmentMapperResultMap mapper = sqlSession.getMapper(DepartmentMapperResultMap.class);
+			Department dept = mapper.getDeptAndEmpsStep(1);
+			System.out.println(dept.getDeptName());
+			System.out.println("-------");
+			System.out.println(dept.getEmps());
+		}finally {
+			sqlSession.close();
+		}
+	}
 }
