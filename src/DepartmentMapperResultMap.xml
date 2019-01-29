@@ -46,6 +46,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="cn.ksdshpx.mybatis.beans.Department" id="myDeptAndEmpsStep">
 		<id column="id" property="id"/>
 		<result column="dept_name" property="deptName"/>
-		<collection property="emps" select="cn.ksdshpx.mybatis.dao.EmployeeMapperResultMap.getEmpsById" column="did"></collection>
+		<collection property="emps" select="cn.ksdshpx.mybatis.dao.EmployeeMapperResultMap.getEmpsById" column="did" fetchType="eager"></collection>
 	</resultMap>
 </mapper>
