@@ -22,4 +22,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
+	
+	<!-- public void updateEmpByConditionSet(Employee condition); -->
+	<select id="updateEmpByConditionSet" parameterType="cn.ksdshpx.mybatis.beans.Employee">
+		update tbl_employee
+		<set>
+			<if test="lastName!=null and lastName.trim()!=''">
+				last_name = #{lastName},
+			</if>
+			<if test="email!=null and email.trim()!=''">
+				email = #{email},
+			</if>
+			<if test="gender==0 or gender==1">
+				gender = #{gender}
+			</if>
+		</set>
+	    where id = #{id}
+	</select>
 </mapper>
