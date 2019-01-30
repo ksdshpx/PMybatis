@@ -14,6 +14,7 @@ import cn.ksdshpx.mybatis.beans.Department;
 import cn.ksdshpx.mybatis.beans.Employee;
 import cn.ksdshpx.mybatis.dao.DepartmentMapperResultMap;
 import cn.ksdshpx.mybatis.dao.EmployeeMapper;
+import cn.ksdshpx.mybatis.dao.EmployeeMapperDynamicSQL;
 import cn.ksdshpx.mybatis.dao.EmployeeMapperResultMap;
 
 /**
@@ -226,6 +227,24 @@ public class TestMybatis {
 			System.out.println(dept.getDeptName());
 			System.out.println("-------");
 			System.out.println(dept.getEmps());
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void testDynamicSqlIfWhere() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			EmployeeMapperDynamicSQL mapper = sqlSession.getMapper(EmployeeMapperDynamicSQL.class);
+			Employee condition = new Employee();
+			//condition.setId(2);
+			//condition.setLastName("liSi");
+			//condition.setEmail("liSi@163.com");
+			condition.setGender(1);
+			List<Employee> emps = mapper.getEmpsByConditionIfWhere(condition);
+			System.out.println(emps);
 		}finally {
 			sqlSession.close();
 		}
