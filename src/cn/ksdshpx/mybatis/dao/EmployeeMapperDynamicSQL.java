@@ -18,4 +18,6 @@ public interface EmployeeMapperDynamicSQL {
 	public List<Employee> getEmpsByConditionChoose(Employee condition);
 
 	public List<Employee> getEmpsByIds(@Param("ids") List<Integer> ids);
+	
+	//批量操作：修改 删除 添加
 }
