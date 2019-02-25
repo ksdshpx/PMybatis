@@ -2,9 +2,11 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.ksdshpx.mybatis.dao.EmployeeMapperDynamicSQL">
+<mapper
+	namespace="cn.ksdshpx.mybatis.dao.EmployeeMapperDynamicSQL">
 	<!-- public List<Employee> getEmpsByConditionIfWhere(Employee condition); -->
-	<select id="getEmpsByConditionIfWhere" resultType="cn.ksdshpx.mybatis.beans.Employee">
+	<select id="getEmpsByConditionIfWhere"
+		resultType="cn.ksdshpx.mybatis.beans.Employee">
 		select id,last_name,email,gender
 		from tbl_employee
 		<where>
@@ -22,9 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	
+
 	<!-- public void updateEmpByConditionSet(Employee condition); -->
-	<select id="updateEmpByConditionSet" parameterType="cn.ksdshpx.mybatis.beans.Employee">
+	<select id="updateEmpByConditionSet"
+		parameterType="cn.ksdshpx.mybatis.beans.Employee">
 		update tbl_employee
 		<set>
 			<if test="lastName!=null and lastName.trim()!=''">
@@ -37,11 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				gender = #{gender}
 			</if>
 		</set>
-	    where id = #{id}
+		where id = #{id}
 	</select>
-	
+
 	<!-- public List<Employee> getEmpsByConditionChoose(Employee condition); -->
-	<select id="getEmpsByConditionChoose" resultType="cn.ksdshpx.mybatis.beans.Employee">
+	<select id="getEmpsByConditionChoose"
+		resultType="cn.ksdshpx.mybatis.beans.Employee">
 		select id,last_name,email,gender
 		from tbl_employee
 		<where>
@@ -60,5 +64,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</otherwise>
 			</choose>
 		</where>
+	</select>
+
+	<!-- public List<Employee> getEmpsByIds(List<Integer> ids); -->
+	<select id="getEmpsByIds"
+		resultType="cn.ksdshpx.mybatis.beans.Employee">
+		select id,last_name,email,gender
+		from tbl_employee
+		where id in
+		<foreach collection="ids" item="currId" open="(" close=")"
+			separator=",">
+			#{currId}
+		</foreach>
 	</select>
 </mapper>

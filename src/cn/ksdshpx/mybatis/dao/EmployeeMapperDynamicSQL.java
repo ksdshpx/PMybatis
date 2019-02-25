@@ -2,6 +2,8 @@ package cn.ksdshpx.mybatis.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.ksdshpx.mybatis.beans.Employee;
 
 /**
@@ -10,6 +12,10 @@ import cn.ksdshpx.mybatis.beans.Employee;
  */
 public interface EmployeeMapperDynamicSQL {
 	public List<Employee> getEmpsByConditionIfWhere(Employee condition);
+
 	public void updateEmpByConditionSet(Employee condition);
+
 	public List<Employee> getEmpsByConditionChoose(Employee condition);
+
+	public List<Employee> getEmpsByIds(@Param("ids") List<Integer> ids);
 }

@@ -1,6 +1,7 @@
 package cn.ksdshpx.mybatis.test;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -279,6 +280,24 @@ public class TestMybatis {
 			condition.setEmail("liSiaa@163.com");
 			//condition.setGender(1);
 			List<Employee> emps = mapper.getEmpsByConditionChoose(condition);
+			for (Employee emp : emps) {
+				System.out.println(emp);
+			}
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void testDynamicSqlForeach() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			EmployeeMapperDynamicSQL mapper = sqlSession.getMapper(EmployeeMapperDynamicSQL.class);
+			List<Integer> ids = new ArrayList<>();
+			ids.add(1);
+			ids.add(2);
+			List<Employee> emps = mapper.getEmpsByIds(ids);
 			for (Employee emp : emps) {
 				System.out.println(emp);
 			}
