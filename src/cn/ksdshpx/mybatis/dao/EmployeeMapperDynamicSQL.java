@@ -11,4 +11,5 @@ import cn.ksdshpx.mybatis.beans.Employee;
 public interface EmployeeMapperDynamicSQL {
 	public List<Employee> getEmpsByConditionIfWhere(Employee condition);
 	public void updateEmpByConditionSet(Employee condition);
+	public List<Employee> getEmpsByConditionChoose(Employee condition);
 }

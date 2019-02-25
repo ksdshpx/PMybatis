@@ -266,4 +266,24 @@ public class TestMybatis {
 			sqlSession.close();
 		}
 	}
+	
+	@Test
+	public void testDynamicSqlChoose() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			EmployeeMapperDynamicSQL mapper = sqlSession.getMapper(EmployeeMapperDynamicSQL.class);
+			Employee condition = new Employee();
+			condition.setId(2);
+			condition.setLastName("liSiAA");
+			condition.setEmail("liSiaa@163.com");
+			//condition.setGender(1);
+			List<Employee> emps = mapper.getEmpsByConditionChoose(condition);
+			for (Employee emp : emps) {
+				System.out.println(emp);
+			}
+		}finally {
+			sqlSession.close();
+		}
+	}
 }
