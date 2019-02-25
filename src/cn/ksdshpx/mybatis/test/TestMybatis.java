@@ -305,4 +305,21 @@ public class TestMybatis {
 			sqlSession.close();
 		}
 	}
+	
+	@Test
+	public void testDynamicSqlBatchInsert() throws Exception{
+		SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			EmployeeMapperDynamicSQL mapper = sqlSession.getMapper(EmployeeMapperDynamicSQL.class);
+			List<Employee> emps = new ArrayList<>();
+			emps.add(new Employee(null,"AA","aa@sina.com",1,null));
+			emps.add(new Employee(null,"BB","bb@sina.com",1,null));
+			emps.add(new Employee(null,"CC","cc@sina.com",1,null));
+			mapper.batchInsertEmps(emps);;
+			sqlSession.commit();
+		}finally {
+			sqlSession.close();
+		}
+	}
 }
